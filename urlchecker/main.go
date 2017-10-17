@@ -7,7 +7,7 @@ import (
 )
 
 func checkDomain(domain string) bool {
-	resp, err := http.Get(fmt.Sprintf("http://%s", domain))
+	resp, err := http.Get(fmt.Sprintf("https://%s", domain))
 	if err != nil {
 		return false
 	}
@@ -36,8 +36,9 @@ func Sequentielly(domains []string) {
 		fmt.Printf("* %s : %v\n", d, ok)
 	}
 }
-func WithChannels(domains []string) {
-	fmt.Println("****** WithChannels ******")
+
+func WithMultipleChannels(domains []string) {
+	fmt.Println("****** WithMultipleChannels ******")
 	var channelList []chan string
 	for _, d := range domains {
 		ch := make(chan string)
@@ -49,5 +50,19 @@ func WithChannels(domains []string) {
 	}
 	for _, channel := range channelList {
 		fmt.Print(<-channel)
+	}
+}
+
+func WithSingleChannel(domains []string) {
+	fmt.Println("****** WithSingleChannel ******")
+	ch := make(chan string)
+	for _, d := range domains {
+		go func(domain string, channel chan string) {
+			ok := checkDomain(domain)
+			channel <- fmt.Sprintf("* %s : %v\n", domain, ok)
+		}(d, ch)
+	}
+	for i := 0; i < len(domains); i++ {
+		fmt.Print(<-ch)
 	}
 }
