@@ -12,7 +12,7 @@ func main() {
 		"walmart.com",
 		"google.com",
 		"amazon.com",
-		"wikipedia.com",
+		"wikipedia.org",
 		"youtube.com",
 		"yahoo.com",
 		"msn.com",
