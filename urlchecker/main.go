@@ -51,7 +51,6 @@ func WithMultipleChannels(domains []string) {
 }
 
 func WithSingleChannel(domains []string) {
-	fmt.Println("****** WithSingleChannel ******")
 	ch := make(chan string)
 	for _, d := range domains {
 		go func(domain string, channel chan string) {

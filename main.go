@@ -21,11 +21,12 @@ func main() {
 	}
 
 	checkTime(func() {
+		fmt.Println("\n****** WithMultipleChannels ******")
 		urlchecker.WithMultipleChannels(domains)
 	})
 
 	checkTime(func() {
-		fmt.Println("\n****** WithMultipleChannels ******")
+		fmt.Println("\n****** WithSingleChannel ******")
 		urlchecker.WithSingleChannel(domains)
 	})
 
