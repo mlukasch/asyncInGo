@@ -15,7 +15,6 @@ func checkDomain(domain string) bool {
 }
 
 func WithWaitGroup(domains []string) {
-	fmt.Println("****** WithWaitGroup ******")
 	var w sync.WaitGroup
 	w.Add(len(domains))
 
@@ -30,7 +29,6 @@ func WithWaitGroup(domains []string) {
 }
 
 func Sequentielly(domains []string) {
-	fmt.Println("****** Sequentielly ******")
 	for _, d := range domains {
 		ok := checkDomain(d)
 		fmt.Printf("* %s : %v\n", d, ok)
@@ -38,7 +36,6 @@ func Sequentielly(domains []string) {
 }
 
 func WithMultipleChannels(domains []string) {
-	fmt.Println("****** WithMultipleChannels ******")
 	var channelList []chan string
 	for _, d := range domains {
 		ch := make(chan string)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"ex7/urlchecker"
+	"fmt"
 	"log"
 	"time"
 )
@@ -24,14 +25,17 @@ func main() {
 	})
 
 	checkTime(func() {
+		fmt.Println("\n****** WithMultipleChannels ******")
 		urlchecker.WithSingleChannel(domains)
 	})
 
 	checkTime(func() {
+		fmt.Println("\n****** Sequentielly ******")
 		urlchecker.Sequentielly(domains)
 	})
 
 	checkTime(func() {
+		fmt.Println("\n****** WithWaitGroup ******")
 		urlchecker.WithWaitGroup(domains)
 	})
 }
